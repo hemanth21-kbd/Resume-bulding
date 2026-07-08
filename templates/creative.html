@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Preview - Creative</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            min-height: 100vh;
+        }
+        .resume {
+            background: white;
+            margin-top: 40px;
+            margin-bottom: 60px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .header .contact {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .body-content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: inline-block;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #667eea;
+        }
+        .section p, .section li {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+        }
+        .section ul {
+            padding-left: 20px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 767px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .resume { border-radius: 10px; }
+        }
+        .btn {
+            border-radius: 30px;
+            font-size: 14px;
+            padding: 10px 25px;
+        }
+        @media print {
+            body { background: white; }
+            .resume { box-shadow: none; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="resume">
+            <div class="header">
+                {% if resume.photo %}
+                <img src="{{ url_for('static', filename='uploads/' + resume.photo) }}" class="profile-img" alt="Profile">
+                {% endif %}
+                <h1>{{ resume.name }}</h1>
+                <div class="contact">
+                    {% if resume.email %}Email: {{ resume.email }} &nbsp;|&nbsp;{% endif %}
+                    {% if resume.phone %}Phone: {{ resume.phone }} &nbsp;|&nbsp;{% endif %}
+                    {% if resume.address %}Address: {{ resume.address }}{% endif %}
+                </div>
+            </div>
+
+            <div class="body-content">
+                <div class="grid-2">
+                    <div class="left-column">
+                        {% if resume.skills %}
+                        <div class="section">
+                            <h2>Skills</h2>
+                            <p>{{ resume.skills }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if resume.languages %}
+                        <div class="section">
+                            <h2>Languages</h2>
+                            <p>{{ resume.languages }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if resume.hobbies %}
+                        <div class="section">
+                            <h2>Hobbies</h2>
+                            <p>{{ resume.hobbies }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="right-column">
+                        {% if resume.objective %}
+                        <div class="section">
+                            <h2>Objective</h2>
+                            <p>{{ resume.objective }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if resume.education %}
+                        <div class="section">
+                            <h2>Education</h2>
+                            <p>{{ resume.education }}</p>
+                        </div>
+                        {% endif %}
+
+                        {% if resume.projects %}
+                        <div class="section">
+                            <h2>Projects</h2>
+                            <p>{{ resume.projects }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if resume.certifications %}
+                <div class="section">
+                    <h2>Certifications</h2>
+                    <p>{{ resume.certifications }}</p>
+                </div>
+                {% endif %}
+
+                {% if resume.achievements %}
+                <div class="section">
+                    <h2>Achievements</h2>
+                    <p>{{ resume.achievements }}</p>
+                </div>
+                {% endif %}
+
+                <div class="text-center mt-5">
+                    <a href="/resume" class="btn btn-dark me-3">Create Another Resume</a>
+                    <a href="/resumes" class="btn btn-secondary">View All Resumes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

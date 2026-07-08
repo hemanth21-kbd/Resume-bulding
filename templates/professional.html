@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Preview - Professional</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #e9ecef;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #212529;
+        }
+        .resume {
+            background: white;
+            margin-top: 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+        }
+        .sidebar {
+            background: #1a1a2e;
+            color: white;
+            padding: 40px 30px;
+            min-height: 100%;
+        }
+        .main-content {
+            padding: 40px 30px;
+        }
+        .sidebar h2, .main-content h2 {
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e94560;
+            color: #1a1a2e;
+        }
+        .sidebar h2 {
+            color: white;
+            border-bottom-color: #e94560;
+        }
+        .sidebar p, .sidebar li {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        .main-content p, .main-content li {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #333;
+        }
+        .sidebar ul, .main-content ul {
+            padding-left: 18px;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #e94560;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+        .name-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .name-title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        .contact-item {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .contact-item strong {
+            color: #e94560;
+        }
+        .btn {
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        @media (max-width: 767px) {
+            .sidebar { min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="resume">
+            <div class="row g-0">
+                <div class="col-md-4 sidebar">
+                    {% if resume.photo %}
+                    <img src="{{ url_for('static', filename='uploads/' + resume.photo) }}" class="profile-img" alt="Profile">
+                    {% endif %}
+
+                    <h2>Contact</h2>
+                    {% if resume.email %}
+                    <div class="contact-item"><strong>Email:</strong><br>{{ resume.email }}</div>
+                    {% endif %}
+                    {% if resume.phone %}
+                    <div class="contact-item"><strong>Phone:</strong><br>{{ resume.phone }}</div>
+                    {% endif %}
+                    {% if resume.address %}
+                    <div class="contact-item"><strong>Address:</strong><br>{{ resume.address }}</div>
+                    {% endif %}
+
+                    {% if resume.skills %}
+                    <h2 class="mt-4">Skills</h2>
+                    <p>{{ resume.skills }}</p>
+                    {% endif %}
+
+                    {% if resume.languages %}
+                    <h2 class="mt-4">Languages</h2>
+                    <p>{{ resume.languages }}</p>
+                    {% endif %}
+
+                    {% if resume.hobbies %}
+                    <h2 class="mt-4">Hobbies</h2>
+                    <p>{{ resume.hobbies }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-8 main-content">
+                    <div class="name-title">
+                        <h1>{{ resume.name }}</h1>
+                        <p class="text-muted">Professional Resume</p>
+                    </div>
+
+                    {% if resume.objective %}
+                    <div class="section">
+                        <h2>Career Objective</h2>
+                        <p>{{ resume.objective }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if resume.education %}
+                    <div class="section">
+                        <h2>Education</h2>
+                        <p>{{ resume.education }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if resume.projects %}
+                    <div class="section">
+                        <h2>Projects</h2>
+                        <p>{{ resume.projects }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if resume.certifications %}
+                    <div class="section">
+                        <h2>Certifications</h2>
+                        <p>{{ resume.certifications }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if resume.achievements %}
+                    <div class="section">
+                        <h2>Achievements</h2>
+                        <p>{{ resume.achievements }}</p>
+                    </div>
+                    {% endif %}
+
+                    <div class="text-center mt-5">
+                        <a href="/resume" class="btn btn-dark me-3">Create Another Resume</a>
+                        <a href="/resumes" class="btn btn-secondary">View All Resumes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

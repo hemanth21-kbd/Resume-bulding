@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resume Preview</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    background:#f4f4f4;
+    color:black;
+    font-family:Arial, sans-serif;
+}
+
+.resume{
+    background:white;
+    padding:50px;
+    margin-top:40px;
+    margin-bottom:60px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+img{
+    border-radius:50%;
+    border:3px solid black;
+    margin-bottom:20px;
+}
+
+h1{
+    color:black;
+    font-weight:bold;
+}
+
+h2{
+    color:black;
+    margin-top:25px;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+p{
+    font-size:18px;
+    line-height:1.7;
+}
+
+hr{
+    border:1px solid #ccc;
+    margin:20px 0;
+}
+
+.btn{
+    border-radius:25px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="resume">
+
+<div class="text-center">
+<h2 class="text-center mb-4">Resume Preview</h2>
+
+{% if resume.photo %}
+<img src="{{ url_for('static', filename='uploads/' + resume.photo) }}"
+width="150"
+height="150">
+{% endif %}
+
+<h1 class="mb-4">{{ resume.name }}</h1>
+
+<p>
+<b>Email:</b> {{ resume.email }}
+</p>
+
+<p>
+<b>Phone:</b> {{ resume.phone }}
+</p>
+
+<p>
+<b>Address:</b> {{ resume.address }}
+</p>
+
+</div>
+
+<hr>
+
+<h2>Career Objective</h2>
+
+<p>{{ resume.objective }}</p>
+
+<hr>
+
+<h2>Skills</h2>
+
+<p>{{ resume.skills }}</p>
+
+<hr>
+
+<h2>Education</h2>
+
+<p>{{ resume.education }}</p>
+
+<hr>
+
+<h2>Projects</h2>
+
+<p>{{ resume.projects }}</p>
+
+<hr>
+
+<h2>Certifications</h2>
+
+<p>{{ resume.certifications }}</p>
+
+<hr>
+
+<h2>Achievements</h2>
+
+<p>{{ resume.achievements }}</p>
+
+<hr>
+
+<h2>Languages</h2>
+
+<p>{{ resume.languages }}</p>
+
+<hr>
+
+<h2>Hobbies</h2>
+
+<p>{{ resume.hobbies }}</p>
+
+<hr>
+
+
+
+<div class="text-center mt-5">
+
+<a href="/resume" class="btn btn-dark me-3">
+Create Another Resume
+</a>
+
+<a href="/resumes" class="btn btn-secondary">
+View All Resumes
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

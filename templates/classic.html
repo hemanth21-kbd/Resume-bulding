@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Preview - Classic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f4f4;
+            font-family: 'Times New Roman', Times, serif;
+            color: #000;
+        }
+        .resume {
+            background: white;
+            padding: 60px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+            border: 2px solid #000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px double #000;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+        .header h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        .header p {
+            font-size: 16px;
+            margin: 2px 0;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section h2 {
+            font-size: 20px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .section p, .section li {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .section ul {
+            padding-left: 20px;
+        }
+        .contact-info {
+            text-align: center;
+            font-size: 14px;
+        }
+        .contact-info span {
+            margin: 0 10px;
+        }
+        .btn {
+            border-radius: 0;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        @media print {
+            body { background: white; }
+            .resume { box-shadow: none; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="resume">
+            <div class="header">
+                <h1>{{ resume.name }}</h1>
+                <div class="contact-info">
+                    {% if resume.email %}<span>Email: {{ resume.email }}</span>{% endif %}
+                    {% if resume.phone %}<span>Phone: {{ resume.phone }}</span>{% endif %}
+                    {% if resume.address %}<span>Address: {{ resume.address }}</span>{% endif %}
+                </div>
+            </div>
+
+            {% if resume.objective %}
+            <div class="section">
+                <h2>Career Objective</h2>
+                <p>{{ resume.objective }}</p>
+            </div>
+            {% endif %}
+
+            {% if resume.education %}
+            <div class="section">
+                <h2>Education</h2>
+                <p>{{ resume.education }}</p>
+            </div>
+            {% endif %}
+
+            {% if resume.skills %}
+            <div class="section">
+                <h2>Skills</h2>
+                <p>{{ resume.skills }}</p>
+            </div>
+            {% endif %}
+
+            {% if resume.projects %}
+            <div class="section">
+                <h2>Projects</h2>
+                <p>{{ resume.projects }}</p>
+            </div>
+            {% endif %}
+
+            {% if resume.certifications %}
+            <div class="section">
+                <h2>Certifications</h2>
+                <p>{{ resume.certifications }}</p>
+            </div>
+            {% endif %}
+
+            {% if resume.achievements %}
+            <div class="section">
+                <h2>Achievements</h2>
+                <p>{{ resume.achievements }}</p>
+            </div>
+            {% endif %}
+
+            {% if resume.languages %}
+            <div class="section">
+                <h2>Languages</h2>
+                <p>{{ resume.languages }}</p>
+            </div>
+            {% endif %}
+
+            {% if resume.hobbies %}
+            <div class="section">
+                <h2>Hobbies</h2>
+                <p>{{ resume.hobbies }}</p>
+            </div>
+            {% endif %}
+
+            <div class="text-center mt-5">
+                <a href="/resume" class="btn btn-dark me-3">Create Another Resume</a>
+                <a href="/resumes" class="btn btn-secondary">View All Resumes</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
